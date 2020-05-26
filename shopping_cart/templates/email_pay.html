@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    </head>
+    <body>
+        <div class="container">
+            <p>Hello {{user_name}}</p>
+            <p>Your Order Is Pending Kindly do payment!</p>
+            <p>Total Amount {{total}} and After 10% Discount Amount {{total_dsc}} is Yet to pay.</p>
+                       
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{item.product.name}}</td>
+                        <td>{{item.product.price}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.get_total}}</td>
+                    </tr>
+                {% endfor %}
+   
+              </tbody>
+            </table>
+          </div>
+    </body>
+</html>

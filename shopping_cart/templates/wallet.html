@@ -1,0 +1,75 @@
+{% extends 'main.html' %}
+{% load rest_framework %}
+
+{% load static %}
+{% block content %}
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="box-element" >
+
+				<a  class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Back to Store</a>
+
+				<br>
+				<br>
+				<form method="POST" id="wallet-form" class="wallet-form">
+                    <h3 class="form-title text-center">Add Wallet Amount</h3>
+
+                    {% csrf_token %}
+                    <div id="user-info" style="padding-left:9px;">
+						<div class="form-field">
+                            <label for="name">Customer</label>
+
+							<input required class="form-control" type="text" name="name" id="name"  value="{{request.user.username}}" readonly>
+						</div>
+						<div class="form-field">
+                            <label for="email">Email</label>
+
+							<input required class="form-control" type="email" name="email" id="email"   value="{{request.user.email}}" readonly>
+						</div>
+                    </div>
+                    {% render_form serializer template_pack='rest_framework/horizontal'%}
+
+                
+                   <div class="form-field">
+                        <input type="submit" name="submit" id="submit" class="btn btn-info" value="Submit"/>
+                    </div>
+				</form>
+				
+				<div>
+					
+					<h4>Customer Wallet</h4>
+					
+                    
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Customer</th>
+								<th>Email</th>
+								<th>Wallet Amount</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% if wallet %}
+
+							<tr>
+								<td>{{wallet.name}}</td>
+								<td>{{wallet.email}}</td>
+								<td>${{wallet.wallet_amount|floatformat:2}}</td>
+							</tr>
+							{% endif %}
+
+							
+						</tbody>
+					</table>
+					
+				</div>
+
+			</div>
+
+            <br>
+        </div>
+	</div>
+{% endblock content %}
+{% block script %}
+
+{% endblock script %}    

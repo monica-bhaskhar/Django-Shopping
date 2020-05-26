@@ -1,0 +1,68 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+	<div class="row">
+		{% for product in products %}
+		<div class="col-lg-4" style="padding-bottom: 20px">
+			<img class="thumbnail" src="{{product.imageURL}}">
+			<div class="box-element product">
+				<h6><strong>{{product.name}}</strong></h6>
+				<hr>
+
+				
+				<a data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart" href="{% url 'cart' product_id=product.id action='add' %}">Add to Cart</a>
+
+				<a class="btn btn-outline-success" href="{% url 'product' pk=product.id  %}">View</a>
+				<h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
+
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	{% if product_obj %}
+	<hr>
+	<h5>Product Suggestions</h5>
+
+	<div class="row">
+		{% for product in product_obj %}
+		<div class="col-lg-4" style="padding-bottom: 20px">
+			<img class="thumbnail" src="{{product.imageURL}}">
+			<div class="box-element product">
+				<h6><strong>{{product.name}}</strong></h6>
+				<hr>
+
+				<a data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart" href="{% url 'cart' product_id=product.id action='add' %}">Add to Cart</a>
+
+				<a class="btn btn-outline-success" href="{% url 'product' pk=product.id  %}">View</a>
+				<h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
+
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	{% endif %}
+
+	{% if obj_product %}
+	<hr>
+	<h5>Product Suggestions</h5>
+
+	<div class="row">
+		{% for product in obj_product %}
+		<div class="col-lg-4" style="padding-bottom: 20px">
+			<img class="thumbnail" src="{{product.imageURL}}">
+			<div class="box-element product">
+				<h6><strong>{{product.name}}</strong></h6>
+				<hr>
+
+				<a data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart" href="{% url 'cart' product_id=product.id action='add' %}">Add to Cart</a>
+
+				<a class="btn btn-outline-success" href="{% url 'product' pk=product.id  %}">View</a>
+				<h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
+
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	{% endif %}
+
+{% endblock content %}
